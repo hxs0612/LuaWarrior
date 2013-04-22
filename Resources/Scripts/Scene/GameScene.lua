@@ -160,8 +160,6 @@ GameScene = {}
 function GameScene:create()
     scene = CCScene:create()
     
-    SceneAgent:cleanSchedule()
-    
     setupView(scene)
     
     return scene
@@ -179,8 +177,8 @@ function GameScene:showGameOver()
     local function replace_schedule()
         scene:cleanup()
         scene:removeFromParentAndCleanup(true)
-        CCDirector:sharedDirector():replaceScene(CCTransitionFade:create(0.5, WelcomeScene:create()))
-        SceneAgent:cleanSchedule()
+        CCDirector:sharedDirector():replaceScene(CCTransitionFade:create(0.5, SceneAgent:createScene(WelcomeScene)))
+        -- SceneAgent:cleanSchedule()
     end
     
     SceneAgent:addSchedule(replace_schedule, 3, false)

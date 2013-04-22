@@ -1,22 +1,18 @@
-require "Layer/GameScene"
-require "Layer/OptionScene"
-require "Layer/AboutScene"
-
 local winSize = CCDirector:sharedDirector():getWinSize()
 
 local function start_callback()
     cclog("start click!")
-    CCDirector:sharedDirector():replaceScene(CCTransitionFade:create(0.5, GameScene:create()))
+    CCDirector:sharedDirector():replaceScene(CCTransitionFade:create(0.5, SceneAgent:createScene(GameScene)))
 end
 
 local function option_callback()
     cclog("option click!")
-    CCDirector:sharedDirector():replaceScene(CCTransitionFade:create(0.5, OptionScene:create()))
+    CCDirector:sharedDirector():replaceScene(CCTransitionFade:create(0.5, SceneAgent:createScene(OptionScene)))
 end
 
 local function about_callback()
     cclog("about invoked!")
-    CCDirector:sharedDirector():replaceScene(CCTransitionFade:create(0.5, AboutScene:create()))
+    CCDirector:sharedDirector():replaceScene(CCTransitionFade:create(0.5, SceneAgent:createScene(AboutScene)))
 end
 
 local function setupView(scene)

@@ -1,11 +1,16 @@
+require "Scene/WelcomeScene"
+require "Scene/GameScene"
+require "Scene/OptionScene"
+require "Scene/AboutScene"
+
 local scheduleStack = {}
 local scheduler = CCDirector:sharedDirector():getScheduler()
 
 SceneAgent = {}
 
-function SceneAgent:createScene()
+function SceneAgent:createScene(Class)
     SceneAgent:cleanSchedule()
-    return CCScene:create()
+    return Class:create()
 end
 
 function SceneAgent:addSchedule(handler, interval, pause)

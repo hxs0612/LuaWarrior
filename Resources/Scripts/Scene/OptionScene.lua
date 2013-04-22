@@ -20,7 +20,7 @@ end
 
 local function back_callback()
     cclog("back invoked!")
-    CCDirector:sharedDirector():replaceScene(CCTransitionFade:create(0.5, WelcomeScene:create()))
+    CCDirector:sharedDirector():replaceScene(CCTransitionFade:create(0.5, SceneAgent:createScene(WelcomeScene)))
 end
 
 local function setupView(scene)

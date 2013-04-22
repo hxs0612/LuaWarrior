@@ -17,12 +17,11 @@ local function main()
 	
 	require "resources"
     require "Agent/SceneAgent"
-    require "Layer/WelcomeScene"
     
     -- silence
 	SimpleAudioEngine:sharedEngine():stopBackgroundMusic()
     
-    local scene = WelcomeScene:create()
+    local scene = SceneAgent:createScene(WelcomeScene)
     CCDirector:sharedDirector():runWithScene(scene)
 end
 
