@@ -1,6 +1,4 @@
-local winSize = CCDirector:sharedDirector():getWinSize()
-
-local layer, enemyArray, enemyTextrue
+local layer, enemyArray
 
 local function init(layer)
     
@@ -40,8 +38,8 @@ function EnemyLayer:getEnemyArray()
 end
 
 function EnemyLayer:enemyHitten(enemy)
+    enemyArray:removeObject(enemy)
     enemy:cleanup()
     local boomActions = EffectFactory:createBoomActions()
     enemy:runAction(boomActions)
-    enemyArray:removeObject(enemy)
 end

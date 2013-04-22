@@ -1,5 +1,3 @@
-local winSize = CCDirector:sharedDirector():getWinSize()
-
 local layer, player
 local player_v = 200
 
@@ -74,5 +72,5 @@ function PlayerLayer:playerHitten()
     local boomActions = EffectFactory:createBoomActions()
     player:runAction(boomActions)
     player = nil
-    GameScene:showGameOver()
+    SceneAgent:gameOver()
 end

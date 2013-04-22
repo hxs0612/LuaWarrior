@@ -21,8 +21,10 @@ local function main()
     -- silence
 	SimpleAudioEngine:sharedEngine():stopBackgroundMusic()
     
-    local scene = SceneAgent:createScene(WelcomeScene)
-    CCDirector:sharedDirector():runWithScene(scene)
+    winSize = CCDirector:sharedDirector():getWinSize()
+    
+    local loadingScene = SceneAgent:createScene(LoadingScene)
+    CCDirector:sharedDirector():runWithScene(loadingScene)
 end
 
 xpcall(main, __G__TRACKBACK__)

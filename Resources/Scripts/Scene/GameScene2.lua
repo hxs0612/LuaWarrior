@@ -10,8 +10,6 @@ local scene,
       pauseLayer, pauseMenu, 
       enemyLayer, enemyBulletLayer
 
-local score = 0
-
 local function background_schedule()
     background:setPositionY(background:getPositionY() - 1)
     background_2:setPositionY(background:getPositionY() + background:getContentSize().height)
@@ -122,7 +120,7 @@ local function setupView(scene)
     
     -- test
     local param = {
-        enemyType = 1,
+        enemyType = 2,
         startX = 0,
         startY = winSize.height / 2,
         endX = winSize.width * 0.75,
@@ -132,7 +130,7 @@ local function setupView(scene)
     EnemyLayer:addEnemy(param)
     
     local param2 = {
-        enemyType = 1,
+        enemyType = 2,
         startX = winSize.width,
         startY = winSize.height / 2,
         endX = winSize.width * 0.25,
@@ -146,17 +144,32 @@ local function setupView(scene)
     
 end
 
-GameScene = {
+GameScene2 = {
     goal = 2,
     nextScene = function()
-        return GameScene2
+        return WelcomeScene
     end
 }
 
-function GameScene:create()
+function GameScene2:create()
     scene = CCScene:create()
     
     setupView(scene)
     
     return scene
+end
+
+function GameScene2:showGameOver()
+    local layer = CCLayer:create()
+    local sprite = CCSprite:create(GameScene_GameOver)
+    sprite:setPosition(winSize.width / 2, winSize.height / 2)
+    layer:addChild(sprite)
+    layer:setPosition(0, 0)
+    scene:addChild(layer, GameScene_GameOverLayer_ID)
+    
+    local function replace_schedule()
+        CCDirector:sharedDirector():replaceScene(CCTransitionFade:create(0.5, SceneAgent:createScene(WelcomeScene)))
+    end
+    
+    SceneAgent:addSchedule(replace_schedule, 3, false)
 end

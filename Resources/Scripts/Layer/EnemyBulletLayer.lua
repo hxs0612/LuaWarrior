@@ -1,5 +1,3 @@
-local winSize = CCDirector:sharedDirector():getWinSize()
-
 local layer, bulletArray, enemyTextrue, bulletBatchNode, playerLayer
 
 local function movebullet_schedule()
@@ -24,8 +22,6 @@ local function movebullet_schedule()
                     -- remove the player
                     playerLayer:playerHitten()
                     
-                    -- todo show the gameover layer
-                    
                     return nil
                     
                 else
@@ -39,9 +35,6 @@ local function movebullet_schedule()
 end
 
 local function init(layer)
-    
-    -- load the plist
-    CCSpriteFrameCache:sharedSpriteFrameCache():addSpriteFramesWithFile(PlayerBulletLayer_Bullet_plist, PlayerBulletLayer_Bullet);
     
     -- load bullet
     bulletBatchNode = CCSpriteBatchNode:create(PlayerBulletLayer_Bullet)
@@ -75,7 +68,6 @@ end
 function EnemyBulletLayer:addBullet(enemy)
     tolua.cast(enemy, "CCSprite")
     
-    -- todo bullet factory, using enemy:getTag()
     local bullet = BulletFactory:createBullet(enemy:getTag())
     local x, y = enemy:getPosition()
     bullet:setPosition(x, y)

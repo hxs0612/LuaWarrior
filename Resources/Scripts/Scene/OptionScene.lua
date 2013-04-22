@@ -1,5 +1,3 @@
-local winSize = CCDirector:sharedDirector():getWinSize()
-
 local function music_callback()
     if CCUserDefault:sharedUserDefault():getBoolForKey(Setting_playBGM) then
         SimpleAudioEngine:sharedEngine():stopBackgroundMusic()

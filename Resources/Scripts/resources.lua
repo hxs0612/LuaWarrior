@@ -1,3 +1,10 @@
+-- SceneAgent
+SceneAgent_Clean = "Stage Clean"
+
+-- LoadingLayer
+LoadingLayer_BG = "Pictures/loading.png"
+LoadingLayer_Loading = "Loading..."
+
 -- MainScene
 MainScene_BG = "Pictures/loading.png"
 MainScene_Menu = "Pictures/menu.png"

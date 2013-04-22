@@ -1,5 +1,3 @@
-local winSize = CCDirector:sharedDirector():getWinSize()
-
 local function start_callback()
     cclog("start click!")
     CCDirector:sharedDirector():replaceScene(CCTransitionFade:create(0.5, SceneAgent:createScene(GameScene)))
