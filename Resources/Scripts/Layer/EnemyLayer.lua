@@ -40,6 +40,8 @@ function EnemyLayer:getEnemyArray()
 end
 
 function EnemyLayer:enemyHitten(enemy)
-    enemy:setVisible(false)
+    enemy:cleanup()
+    local boomActions = EffectFactory:createBoomActions()
+    enemy:runAction(boomActions)
     enemyArray:removeObject(enemy)
 end

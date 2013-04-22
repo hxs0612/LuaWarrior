@@ -5,10 +5,12 @@ require "Layer/EnemyLayer"
 require "Layer/EnemyBulletLayer"
 require "Factory/EnemyFactory"
 require "Factory/BulletFactory"
+require "Factory/EffectFactory"
 
 local winSize = CCDirector:sharedDirector():getWinSize()
 
-local background, background_2, 
+local scene,
+      background, background_2, 
       playerLayer, playerBulletLayer, 
       pauseLayer, pauseMenu, 
       enemyLayer, enemyBulletLayer
@@ -63,6 +65,12 @@ end
 
 local function setupView(scene)
     
+    -- init enemy factory
+    EnemyFactory:init()
+    
+    -- init effect factory
+    EffectFactory:init()
+    
     -- set background
     local backgroundLayer = CCLayer:create()
     
@@ -77,7 +85,7 @@ local function setupView(scene)
     backgroundLayer:addChild(background_2)
     
     -- set background scroll
-    -- CCDirector:sharedDirector():getScheduler():scheduleScriptFunc(background_schedule, 0.03, false)
+    SceneAgent:addSchedule(background_schedule, 0.03, false)
     
     scene:addChild(backgroundLayer, 0, GameScene_BackgroundLayer_ID)
     
@@ -106,9 +114,6 @@ local function setupView(scene)
     -- add player bullet layer
     playerBulletLayer = PlayerBulletLayer:create()
     scene:addChild(playerBulletLayer)
-    
-    -- init enemy factory
-    EnemyFactory:init()
     
     -- add enemy layer
     enemyLayer = EnemyLayer:create()
@@ -146,16 +151,37 @@ local function setupView(scene)
     EnemyLayer:addEnemy(param2)
     
     -- add bullet schedule
-    CCDirector:sharedDirector():getScheduler():scheduleScriptFunc(addbullet_schedule, 0.3, false)
+    SceneAgent:addSchedule(addbullet_schedule, 0.3, false)
     
 end
 
 GameScene = {}
 
 function GameScene:create()
-    local scene = CCScene:create()
+    scene = CCScene:create()
+    
+    SceneAgent:cleanSchedule()
     
     setupView(scene)
     
     return scene
+end
+
+function GameScene:showGameOver()
+    local layer = CCLayer:create()
+    local sprite = CCSprite:create(GameScene_GameOver)
+    sprite:setPosition(winSize.width / 2, winSize.height / 2)
+    layer:addChild(sprite)
+    layer:setPosition(0, 0)
+    scene:addChild(layer, GameScene_GameOverLayer_ID)
+    
+    local id = nil
+    local function replace_schedule()
+        scene:cleanup()
+        scene:removeFromParentAndCleanup(true)
+        CCDirector:sharedDirector():replaceScene(CCTransitionFade:create(0.5, WelcomeScene:create()))
+        SceneAgent:cleanSchedule()
+    end
+    
+    SceneAgent:addSchedule(replace_schedule, 3, false)
 end

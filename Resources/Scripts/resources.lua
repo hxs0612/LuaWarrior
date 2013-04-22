@@ -12,6 +12,8 @@ GameScene_PlayerLayer_ID = 20
 GameScene_EnemyLayer_ID = 30
 GameScene_PauseLayer_ID = 40
 GameScene_PauseMenu_ID = 41
+GameScene_GameOverLayer_ID = 90
+GameScene_GameOver = "Pictures/gameOver.png"
 
 -- PauseLayer
 PauseLayer_Play = "Pictures/play.png"
@@ -29,6 +31,11 @@ EnemyFactory_EnemyTextrue = "Pictures/enemy.png"
 
 -- EnemyBulletLayer
 EnemyBulletLayer_Bullet_Frame1 = "W2.png"
+
+-- EffectFactory
+EffectFactory_Explosion_plist = "Pictures/explosion.plist"
+EffectFactory_Boom = "boom"
+EffectFactory_Boom_Len = 35
 
 -- OptionScene
 OptionScene_Music_On = "Music On"

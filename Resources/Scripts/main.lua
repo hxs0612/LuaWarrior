@@ -16,6 +16,7 @@ local function main()
     collectgarbage("setstepmul", 5000)
 	
 	require "resources"
+    require "Agent/SceneAgent"
     require "Layer/WelcomeScene"
     
     -- silence

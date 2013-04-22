@@ -17,11 +17,3 @@ function BulletFactory:createBullet(enemyType)
     bullet:setTag(enemyType)
     return bullet
 end
-
--- function BulletFactory:getBulletSize(bulletType)
---     if bulletType == 1 then
---         return 3, 3
---     elseif bulletType == 2 then
---         return 3, 6
---     end
--- end

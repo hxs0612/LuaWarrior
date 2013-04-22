@@ -70,6 +70,9 @@ function PlayerLayer:getPlayer()
 end
 
 function PlayerLayer:playerHitten()
-    player:setVisible(false)
+    player:cleanup()
+    local boomActions = EffectFactory:createBoomActions()
+    player:runAction(boomActions)
     player = nil
+    GameScene:showGameOver()
 end

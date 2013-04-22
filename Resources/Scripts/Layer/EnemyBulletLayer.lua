@@ -58,7 +58,7 @@ local function init(layer)
     
     layer:addChild(bulletBatchNode)
     
-    CCDirector:sharedDirector():getScheduler():scheduleScriptFunc(movebullet_schedule, 0.01, false)
+    SceneAgent:addSchedule(movebullet_schedule, 0.01, false)
     
 end
 
