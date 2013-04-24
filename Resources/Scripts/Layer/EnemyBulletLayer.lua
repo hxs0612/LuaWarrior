@@ -1,38 +1,4 @@
-local layer, bulletArray, enemyTextrue, bulletBatchNode, playerLayer
-
-local function movebullet_schedule()
-    local index, len = 0, bulletArray:count()
-    if len > 0 and playerLayer then
-        local player = playerLayer:getPlayer()
-        while index < len do
-            local b = tolua.cast(bulletArray:objectAtIndex(index),"CCSprite")
-            local y = b:getPositionY() - 5
-            if y < 0 then
-                -- remove the bullet when overflow
-                bulletArray:removeObject(b)
-                bulletBatchNode:removeChild(b, true)
-                len = len - 1
-            else
-                if player and b:boundingBox():intersectsRect(player:boundingBox()) then
-                    
-                    -- remove the bullet when overflow
-                    bulletArray:removeObject(b)
-                    bulletBatchNode:removeChild(b, true)
-                    
-                    -- remove the player
-                    playerLayer:playerHitten()
-                    
-                    return nil
-                    
-                else
-                    -- move the bullet
-                    b:setPositionY(y)
-                    index = index + 1
-                end
-           end
-        end
-    end
-end
+local layer, bulletArray, enemyTextrue, bulletBatchNode
 
 local function init(layer)
     
@@ -50,8 +16,6 @@ local function init(layer)
     bulletArray:retain()
     
     layer:addChild(bulletBatchNode)
-    
-    SceneAgent:addSchedule(movebullet_schedule, 0.01, false)
     
 end
 
@@ -76,6 +40,36 @@ function EnemyBulletLayer:addBullet(enemy)
     local s = bullet:getContentSize()
 end
 
-function EnemyBulletLayer:setPlayerLayer(layer)
-    playerLayer = layer
+function EnemyBulletLayer:moveBullets()
+    local index, len = 0, bulletArray:count()
+    if len > 0 then
+        local player = PlayerAgent:getPlayer()
+        while index < len do
+            local b = tolua.cast(bulletArray:objectAtIndex(index),"CCSprite")
+            local y = b:getPositionY() - 5
+            if y < 0 then
+                -- remove the bullet when overflow
+                bulletArray:removeObject(b)
+                bulletBatchNode:removeChild(b, true)
+                len = len - 1
+            else
+                if player and b:boundingBox():intersectsRect(player:boundingBox()) then
+                    
+                    -- remove the bullet when overflow
+                    bulletArray:removeObject(b)
+                    bulletBatchNode:removeChild(b, true)
+                    
+                    -- remove the player
+                    PlayerAgent:playerHitten()
+                    
+                    return nil
+                    
+                else
+                    -- move the bullet
+                    b:setPositionY(y)
+                    index = index + 1
+                end
+           end
+        end
+    end
 end

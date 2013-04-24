@@ -1,6 +1,7 @@
 require "Factory/EnemyFactory"
 require "Factory/BulletFactory"
 require "Factory/EffectFactory"
+require "Agent/StageAgent"
 
 local function setupView(scene)
     local layer = CCLayer:create()
@@ -21,11 +22,11 @@ local function pre_schedule()
     -- preload the music
     SimpleAudioEngine:sharedEngine():preloadBackgroundMusic(MainScene_BGM)
     
-    -- preload the effect
-    
     -- preload the bullet
-    CCSpriteFrameCache:sharedSpriteFrameCache():addSpriteFramesWithFile(PlayerBulletLayer_Bullet_plist, PlayerBulletLayer_Bullet);
+    CCSpriteFrameCache:sharedSpriteFrameCache():addSpriteFramesWithFile(PlayerBulletLayer_Bullet_plist)
     
+    -- preload the effect
+    CCSpriteFrameCache:sharedSpriteFrameCache():addSpriteFramesWithFile(EffectFactory_Explosion_plist)
     
     -- init the factory
     EnemyFactory:init()

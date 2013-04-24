@@ -1,5 +1,4 @@
-local layer, player
-local player_v = 200
+local layer, player, moveToAction
 
 local function onTouchBegan(x, y)
     if not player then
@@ -10,12 +9,11 @@ local function onTouchBegan(x, y)
     x = math.min(math.max(width / 2, x), winSize.width - width / 2)
     y = math.min(math.max(height / 2, y), winSize.height - height / 2)
     
-    local t = math.sqrt((player:getPositionX() - x) ^ 2 + (player:getPositionY() - y) ^ 2) / player_v
+    local t = math.sqrt((player:getPositionX() - x) ^ 2 + (player:getPositionY() - y) ^ 2) / PlayerLayer_speed
     
-    local moveToAction = CCMoveTo:create(t, ccp(x, y))
-    player:stopAllActions()
+    player:stopAction(moveToAction)
+    moveToAction = CCMoveTo:create(t, ccp(x, y))
     player:runAction(moveToAction)
-    -- player:setPosition(x, y)
     
 end
 
@@ -30,7 +28,7 @@ local function init(layer)
     -- add player
     player = CCSprite:create(PlayerLayer_player, CCRectMake(60, 0, 60, 43))
     player:setPosition(winSize.width / 2, 30)
-    layer:addChild(player)
+    layer:addChild(player, 0 ,GameScene_Player_ID)
     
     -- add player animation
     local animation = CCAnimation:create()
@@ -55,14 +53,6 @@ function PlayerLayer:create()
     return layer
 end
 
-function PlayerLayer:setTouchEnabled()
-    layer:setTouchEnabled(true)
-end
-
-function PlayerLayer:setTouchDisabled()
-    layer:setTouchEnabled(false)
-end
-
 function PlayerLayer:getPlayer()
     return player
 end
@@ -72,5 +62,5 @@ function PlayerLayer:playerHitten()
     local boomActions = EffectFactory:createBoomActions()
     player:runAction(boomActions)
     player = nil
-    SceneAgent:gameOver()
+    StageAgent:gameOver()
 end

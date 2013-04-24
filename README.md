@@ -1,11 +1,11 @@
-MyMoonWarrior的Lua实现
+# MyMoonWarrior的Lua实现 #
 
-增强SceneAgent, 但是现行结构依旧很糟糕
+分离出StageAgent和各个Stage, Stage中只关注本关卡的逻辑
 
-TODO
-*可能存在BUG: stage clean 和 game over 的冲突
-*重新设计程序结构, 继续增强SceneAgent功能, 分离出专门的stage logic类
-*继续分离agent
-*schedule的调整, 分离函数
-*敌机的飞行逻辑与入场的时机
-*子弹的释放与飞行逻辑
+## BUG ##
+    * stage clean与game over冲突
+
+## TODO ##
+    * 敌机子弹增强
+    * 丰富敌机种类
+    * 添加场景物品滚动

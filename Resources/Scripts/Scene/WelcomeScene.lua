@@ -1,15 +1,12 @@
 local function start_callback()
-    cclog("start click!")
-    CCDirector:sharedDirector():replaceScene(CCTransitionFade:create(0.5, SceneAgent:createScene(GameScene)))
+    CCDirector:sharedDirector():replaceScene(CCTransitionFade:create(0.5, SceneAgent:createStage()))
 end
 
 local function option_callback()
-    cclog("option click!")
     CCDirector:sharedDirector():replaceScene(CCTransitionFade:create(0.5, SceneAgent:createScene(OptionScene)))
 end
 
 local function about_callback()
-    cclog("about invoked!")
     CCDirector:sharedDirector():replaceScene(CCTransitionFade:create(0.5, SceneAgent:createScene(AboutScene)))
 end
 

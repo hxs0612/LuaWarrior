@@ -1,8 +1,6 @@
 EffectFactory = {}
 
 function EffectFactory:init()
-    -- preload the explosion frame
-    CCSpriteFrameCache:sharedSpriteFrameCache():addSpriteFramesWithFile(EffectFactory_Explosion_plist)
     
     -- push boom animation into cache
     local boomAnimation = CCAnimation:create()

@@ -14,11 +14,17 @@ MainScene_BGM = "Sounds/mainMainMusic.mp3"
 -- GameScene
 GameScene_BG = "Pictures/bg01.jpg"
 GameScene_Pause = "Pictures/pause.png"
-GameScene_BackgroundLayer_ID = 10
+GameScene_BackgroundLayer_ID = 0
+GameScene_ItemLayer_ID = 10
 GameScene_PlayerLayer_ID = 20
-GameScene_EnemyLayer_ID = 30
-GameScene_PauseLayer_ID = 40
-GameScene_PauseMenu_ID = 41
+GameScene_Player_ID = 21
+GameScene_PlayerBulletLayer_ID = 30
+GameScene_EnemyLayer_ID = 40
+GameScene_EnemyBulletLayer_ID = 45
+GameScene_MenuLayer_ID = 60
+GameScene_PauseMenu_ID = 61
+GameScene_PauseLayer_ID = 70
+GameScene_StageCleanLayer_ID = 80
 GameScene_GameOverLayer_ID = 90
 GameScene_GameOver = "Pictures/gameOver.png"
 
@@ -27,6 +33,7 @@ PauseLayer_Play = "Pictures/play.png"
 
 -- PlayerLayer
 PlayerLayer_player = "Pictures/ship01.png"
+PlayerLayer_speed = 200
 
 -- PlayerBulletLayer
 PlayerBulletLayer_Bullet = "Pictures/bullet.png"
