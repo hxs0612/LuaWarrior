@@ -10,9 +10,10 @@ require "Layer/PlayerBulletLayer"
 require "Layer/EnemyLayer"
 require "Layer/EnemyBulletLayer"
 
-local stage, scene
+local stage, scene, isGameover
 
 local function setStage()
+    isGameover = false
     StageAgent:setBackground()
     StageAgent:pauseEnable()
     PlayerAgent:create(scene)
@@ -145,13 +146,21 @@ function StageAgent:nextStage()
     menuLayer:setVisible(false)
     
     -- add stage clean layer
-    local layer = CCLayer:create()
+    local layer = scene:getChildByTag(GameScene_ResultLayer_ID)
+    if not layer then
+        layer = CCLayer:create()
+        scene:addChild(layer, GameScene_ResultLayer_ID, GameScene_ResultLayer_ID)
+    else
+        layer:removeChildByTag(GameScene_GameOver_ID, true)
+    end
     local clean = CCLabelTTF:create(SceneAgent_Clean, FONT_ARIAL, 24)
     clean:setPosition(winSize.width / 2, winSize.height / 2)
-    layer:addChild(clean)
-    scene:addChild(layer, GameScene_StageCleanLayer_ID, GameScene_StageCleanLayer_ID)
+    layer:addChild(clean, 0, GameScene_StageClean_ID)
     
     local function nextstage_schedule()
+        if isGameover then
+            return nil
+        end
         SceneAgent:cleanSchedule()
         stage = stage.nextStage
         if stage then
@@ -168,12 +177,18 @@ end
 
 function StageAgent:gameOver()
     
-    local layer = CCLayer:create()
+    local layer = scene:getChildByTag(GameScene_ResultLayer_ID)
+    if not layer then
+        layer = CCLayer:create()
+        scene:addChild(layer, GameScene_ResultLayer_ID, GameScene_ResultLayer_ID)
+    else
+        layer:removeChildByTag(GameScene_StageClean_ID, true)
+    end
     local sprite = CCSprite:create(GameScene_GameOver)
     sprite:setPosition(winSize.width / 2, winSize.height / 2)
-    layer:addChild(sprite)
+    layer:addChild(sprite, 0, GameScene_GameOver_ID)
     layer:setPosition(0, 0)
-    scene:addChild(layer, GameScene_GameOverLayer_ID)
+    isGameover = true
     
     local function gameover_schedule()
         CCDirector:sharedDirector():replaceScene(CCTransitionFade:create(0.5, SceneAgent:createScene(WelcomeScene)))

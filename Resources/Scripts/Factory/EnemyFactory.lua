@@ -15,6 +15,9 @@ function EnemyFactory:createEnemy(enemyType)
     elseif enemyType == 2 then
         enemy = CCSprite:createWithTexture(enemyTextrue, CCRectMake(69, 86, 53, 28))
         enemy:setTag(2)
+    elseif enemyType == 3 then
+        enemy = CCSprite:createWithTexture(enemyTextrue, CCRectMake(2, 2, 78, 42))
+        enemy:setTag(3)
     end
     return enemy
 end

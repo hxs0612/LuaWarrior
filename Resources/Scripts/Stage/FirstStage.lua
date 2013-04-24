@@ -26,10 +26,10 @@ end
 
 local function test3()
     local param = {
-        enemyType = 2,
-        startX = winSize.width,
-        startY = winSize.height / 2,
-        endX = winSize.width * 0.25,
+        enemyType = 3,
+        startX = winSize.width / 2,
+        startY = winSize.height,
+        endX = winSize.width / 2,
         endY = winSize.height * 0.75,
         speed = 100,
     }

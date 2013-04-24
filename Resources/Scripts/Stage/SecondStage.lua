@@ -26,12 +26,12 @@ end
 
 local function test3()
     local param = {
-        enemyType = 1,
+        enemyType = 3,
         startX = winSize.width,
         startY = winSize.height / 2,
         endX = winSize.width * 0.25,
         endY = winSize.height * 0.75,
-        speed = 100,
+        speed = 200,
     }
     StageAgent:addEnemy(param)
     cleanFlag = true

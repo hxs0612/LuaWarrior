@@ -24,8 +24,9 @@ GameScene_EnemyBulletLayer_ID = 45
 GameScene_MenuLayer_ID = 60
 GameScene_PauseMenu_ID = 61
 GameScene_PauseLayer_ID = 70
-GameScene_StageCleanLayer_ID = 80
-GameScene_GameOverLayer_ID = 90
+GameScene_ResultLayer_ID = 90
+GameScene_StageClean_ID = 91
+GameScene_GameOver_ID = 92
 GameScene_GameOver = "Pictures/gameOver.png"
 
 -- PauseLayer
@@ -45,6 +46,7 @@ EnemyFactory_EnemyTextrue = "Pictures/enemy.png"
 
 -- EnemyBulletLayer
 EnemyBulletLayer_Bullet_Frame1 = "W2.png"
+EnemyBulletLayer_Bullet_Speed = 5
 
 -- EffectFactory
 EffectFactory_Explosion_plist = "Pictures/explosion.plist"

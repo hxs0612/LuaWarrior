@@ -3,6 +3,8 @@ local function getBulletFrame(enemyType)
         return EnemyBulletLayer_Bullet_Frame1
     elseif enemyType == 2 then
         return PlayerBulletLayer_Bullet_Frame
+    elseif enemyType == 3 then
+        return PlayerBulletLayer_Bullet_Frame
     end
 end
 
